@@ -116,9 +116,8 @@ std::string DevToolsManagerDelegate::GetDiscoveryPageHTML() {
       IDR_CONTENT_SHELL_DEVTOOLS_DISCOVERY_PAGE).as_string();
 }
 
-std::string DevToolsManagerDelegate::GetFrontendResource(
-    const std::string& path) {
-  return content::DevToolsFrontendHost::GetFrontendResource(path).as_string();
+bool DevToolsManagerDelegate::HasBundledFrontendResources() {
+  return true;
 }
 
 }  // namespace brightray

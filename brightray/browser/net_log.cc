@@ -11,9 +11,9 @@
 #include "base/files/file_path.h"
 #include "base/memory/ptr_util.h"
 #include "base/values.h"
-#include "content/public/common/content_switches.h"
 #include "net/log/file_net_log_observer.h"
 #include "net/log/net_log_util.h"
+#include "services/network/public/cpp/network_switches.h"
 
 namespace brightray {
 
@@ -46,11 +46,11 @@ NetLog::~NetLog() {
 
 void NetLog::StartLogging() {
   auto command_line = base::CommandLine::ForCurrentProcess();
-  if (!command_line->HasSwitch(switches::kLogNetLog))
+  if (!command_line->HasSwitch(network::switches::kLogNetLog))
     return;
 
   base::FilePath log_path =
-      command_line->GetSwitchValuePath(switches::kLogNetLog);
+      command_line->GetSwitchValuePath(network::switches::kLogNetLog);
   std::unique_ptr<base::Value> constants(GetConstants());
   net::NetLogCaptureMode capture_mode =
       net::NetLogCaptureMode::IncludeCookiesAndCredentials();
